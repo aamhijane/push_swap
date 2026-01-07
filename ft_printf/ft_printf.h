@@ -22,5 +22,4 @@ void	ft_putstr(const char *s, int *count);
 void	ft_putnbr(int num, int *count);
 void	ft_putnbr_unsigned(unsigned int num, int *count);
 void	ft_putchar(const char c, int *count);
-size_t	ft_strlen(const char *s);
 #endif

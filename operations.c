@@ -1,28 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 20:17:52 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/07 19:32:48 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/07 19:24:54 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/07 19:24:55 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-
-// void	push_swap(int argc, char **argv) {}
-
-int	main(int argc, char **argv)
-{
-	// int	is_num;
-	//
-	// is_num = is_number(argv[1]);
-	// ft_printf("ARGC: %d\n", argc);
-	// ft_printf("ARGV[1] is number ?: %d\n", is_num);
-	extract_argument(argv[1]);
-	return (FALSE);
-}

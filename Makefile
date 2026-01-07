@@ -2,9 +2,9 @@
 NAME=push_swap
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror 
+CFLAGS=#-Wall -Wextra -Werror 
 
-SOURCE_FILES=push_swap.c utils.c
+SOURCE_FILES=push_swap.c utils.c operations.c validation.c parsing.c
 OBJECT_FILES=$(SOURCE_FILES:.c=.o)
 
 LIBFT_PATH=libft/

@@ -18,7 +18,7 @@ void	ft_putchar(const char c, int *count)
 	(*count)++;
 }
 
-size_t	ft_strlen(const char *s)
+static size_t	ft_strlen(const char *s)
 {
 	int	i;
 

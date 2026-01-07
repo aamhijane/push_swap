@@ -13,7 +13,12 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-void	push_swap(int argc, char **argv);
-int	is_num(char *str);
+#define TRUE 1
+#define FALSE 0
+
+// void	push_swap(int argc, char **argv);
+int	is_number(char *);
+
+void	extract_argument(char *);
 
 #endif
