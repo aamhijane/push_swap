@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   allocation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 22:59:17 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/06 23:00:03 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/08 21:24:12 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/08 21:30:03 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+void	init_stack(int *stack, size_t stack_size)
+{
+	stack = malloc(sizeof(int) * stack_size);
+}
 
-#define TRUE 1
-#define FALSE 0
+void	free_stack(int *stack)
+{
+	free(stack);
+}
 
-// void	push_swap(int argc, char **argv);
-int	is_number(char *);
-int	is_integers(int *);
-int	is_int_limit(int *, int);
-int	is_duplicate(int *, int);
-int	is_args(int);
-void	extract_argument(char *);
-void	count_arguments(char *, int *);
-#endif
+

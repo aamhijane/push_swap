@@ -1,48 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 20:01:34 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/07 20:01:57 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/08 21:33:04 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/08 21:42:28 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
-
-int	is_int_limit(int *stack, int size)
+void	push_element(char *stack, int element, int top)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (stack[i] > 2147483647 || stack[i] < -2147483648)
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	top++;
+	stack[top] = element;
 }
 
-int	is_duplicate(int *stack, int size)
+int	pop_element(char *stack, int top)
 {
-	int	i;
-	int	j;
+	char	*removed_element;
 
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (stack[i] == stack[j])
-				return (TRUE);
-			j++;
-		}
-		i++;
-	}
+	removed_element = stack[top];
+	top--;
+	return (removed_element);
+}
+
+int	top_element(char *stack, int top)
+{
+	return (stack[top]);
+}
+
+int	stack_isEmpty(int top)
+{
+	if (top == -1)
+		return (TRUE);
 	return (FALSE);
 }
