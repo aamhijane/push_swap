@@ -10,5 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
+void	error()
+{
+	write(2, "Error\n", 6);
+	exit(8);
+}
 
+int	stack_size(char **arguments)
+{
+	int	i;
+
+	i = 0;
+	while (arguments[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	is_matched(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+void	free_allocated_stack(char **stack)
+{
+	int	i;
+
+	if (!stack)
+		return ;
+	i = 0;
+	while (stack[i])
+	{
+		free(stack[i]);
+		i++;
+	}
+	free(stack);
+}

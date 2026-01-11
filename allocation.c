@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	init_stack(int *stack, size_t stack_size)
-{
-	stack = malloc(sizeof(int) * stack_size);
-}
-
-void	free_stack(int *stack)
-{
-	free(stack);
-}
+// void	init_stack(int *stack, size_t stack_size)
+// {
+// 	stack = malloc(sizeof(int) * stack_size);
+// }
+//
+// void	free_stack(int *stack)
+// {
+// 	free(stack);
+// }
 
 

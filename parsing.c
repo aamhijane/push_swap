@@ -10,97 +10,48 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
+#include "push_swap.h"
 
-static void	space_to_nterminate(char *str)
+static char	*join_arguments(char **arguments, int size)
 {
+	
 	int	i;
-	size_t	len; 
+	char	*result;
+	char	*tmp;
 
-	len = ft_strlen(str);
-	i = 0;
-	while (i < len)
-	{	
-		if (str[i] == ' ')
-			str[i] = '\0';
+	result = ft_strdup("");
+	i = 1;
+	while (i <= size - 1 && arguments[i] != NULL)
+	{
+		tmp = ft_strjoin(result, arguments[i]);
+		free(result);
+		if (!tmp)
+			return (NULL);
+		result = tmp;
+		if (i != size - 1)
+		{
+			tmp = ft_strjoin(result, " ");
+			free(result);
+			if (!tmp)
+				return (NULL);
+			result = tmp;
+		}
 		i++;
 	}
+	return (result);
 }
 
-void	fill_static_stack(char *stack, int index, int element)
+char	**split_arguments(char **arguments, int size)
 {
-	stack[index] = element;
+	char	*join_args;
+	char	**split_args;
+
+	join_args = join_arguments(arguments, size);
+	if (!join_args)
+		return (NULL);
+	split_args = ft_split(join_args, ' ');
+	free(join_args);
+	if (!split_args)
+		return (NULL);
+	return (split_args);
 }
-
-void	count_arguments(char *arg, int *count_arg)
-{
-	int	i;
-	int	num;
-	size_t	len;
-	size_t	num_len;
-
-	i = 0;
-	len = ft_strlen(arg);
-	space_to_nterminate(arg);
-	while (i < len)
-	{	
-		while (arg[i] == '\0')
-			i++;
-		num = ft_atoi(arg + i);
-		num_len = ft_strlen(ft_itoa(num));
-		i = i + num_len;
-		(*count_arg)++;
-	}
-}
-
-void	extract_argument(char *str)
-{
-	int	i;
-	int	num;
-	size_t	len;
-	size_t	num_len;
-
-	i = 0;
-	len = ft_strlen(str);
-	space_to_nterminate(str);
-	while (i < len)
-	{	
-		while (str[i] == '\0')
-			i++;
-		num = ft_atoi(str + i);
-
-		// push to the stack
-		// fill_static_stack(stack, j, num);
-
-		num_len = ft_strlen(ft_itoa(num));
-		i = i + num_len;
-	}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,37 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-// void	push_swap(int argc, char **argv) {}
+char	**extract_args(int argc, char **argv)
+{
+	size_t	size;
+	char	**split_args;
+
+	if (is_empty(argc, argv))
+		return (NULL);
+	split_args = split_arguments(argv, argc);
+	if (!split_args)
+		return (NULL);
+	size = stack_size(split_args);
+	if (!is_validate(split_args, size))
+		error();
+	return (split_args);
+}
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	count_arg;
-	int	stack[4];
+	char	**ext_args;
 
-	stack[0] = 2;
-	stack[1] = 2;
-	stack[2] = 3;
-	stack[3] = 4;
-
-	i = 1;
-	count_arg = 0;
-
-	ft_printf("NUMBER OF ARGC: %d\n", argc);
-	while (argc > i)
-	{
-		count_arguments(argv[i], &count_arg);
-		i++;
-	}
-	ft_printf("NUMBER OF ARGUMENTS: %d\n", count_arg);
-	if (is_duplicate(stack, 4))
-		ft_printf("IS DUPLICATED");
-	else
-		ft_printf("IS NOT DUPLICATED");
-	// extract_argument(argv[1]);
+	ext_args = extract_args(argc, argv);
+	if (!ext_args)
+		return (FALSE);
+	free_allocated_stack(ext_args);
 	return (FALSE);
 }

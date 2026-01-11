@@ -12,16 +12,19 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+#include "libft/libft.h"
+#include <stdio.h>
 
 #define TRUE 1
 #define FALSE 0
 
 // void	push_swap(int argc, char **argv);
-int	is_number(char *);
-int	is_integers(int *);
-int	is_int_limit(int *, int);
-int	is_duplicate(int *, int);
-int	is_args(int);
-void	extract_argument(char *);
-void	count_arguments(char *, int *);
+void	error();
+void	fill_stack(int, char **);
+void	free_allocated_stack(char **);
+int	stack_size(char **);
+int	is_empty(int, char **);
+int	is_matched(char *, char *);
+int	is_validate(char **, size_t);
+char	**split_arguments(char **, int);
 #endif
