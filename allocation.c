@@ -33,7 +33,6 @@ void	destroy_double_stack(void **stack)
 
 	if (!stack)
 		return ;
-
 	i = 0;
 	while (stack[i])
 	{

@@ -23,7 +23,6 @@ static int	is_number(char *argument)
 		return (FALSE);
 	if (i == 1 && argument[i] == '0')
 		return (FALSE);
-		
 	while (argument[i])
 	{
 		if (!ft_isdigit(argument[i]))
@@ -80,7 +79,6 @@ static long	is_limit(char *argument)
 	if (res > 2147483647 || res < -2147483648)
 		return (TRUE);
 	return (FALSE);
-		
 }
 
 int	is_empty(int argc, char **argv)
@@ -92,8 +90,8 @@ int	is_empty(int argc, char **argv)
 
 int	is_validate(char **arguments, size_t size)
 {
+	int		is_dup;
 	size_t	i;
-	int	is_dup;
 
 	is_dup = is_duplicate(arguments, size);
 	i = 0;

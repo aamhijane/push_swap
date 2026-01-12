@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+void	fill_stack(int *a, char **split_args, size_t size, int *top)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		a[i] = ft_atoi(split_args[i]);
+		(*top)++;
+		i++;
+	}
+}
 // void	init_stack(int a[], int top, int argc, char **argv)
 // {
 // 	char	**extracted_args;

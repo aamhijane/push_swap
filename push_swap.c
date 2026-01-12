@@ -6,7 +6,7 @@
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 20:17:52 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/07 19:32:48 by ayamhija         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:20:28 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	push_swap(int *a)
 {
-
+	printf("a[0] == %d\n", a[0]);
 }
 
 int	main(int argc, char **argv)
 {
-	int	*a;
-	int	top;
+	int		top;
+	int		*a;
 
 	if (is_empty(argc, argv))
 		return (FALSE);

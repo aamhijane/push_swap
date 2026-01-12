@@ -12,24 +12,25 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "libft/libft.h"
-#include <stdio.h>
+# include "libft/libft.h"
+# include <stdio.h>
 
-#define TRUE 1
-#define FALSE 0
+# define TRUE 1
+# define FALSE 0
 
-void	error();
-// void	fill_stack(int, char **);
-void	destroy_stack(void *);
-void	destroy_double_stack(void **);
+void	error(void);
 
-int	*create_stack(size_t);
-int	*extract_args(int, char **, int *);
-int	stack_size(char **);
+void	destroy_double_stack(void **stack);
+void	destroy_stack(void *stack);
+void	fill_stack(int *a, char **split_args, size_t size, int *top);
 
-int	is_empty(int, char **);
-int	is_matched(char *, char *);
-int	is_validate(char **, size_t);
+int		stack_size(char **arguments);
+int		*create_stack(size_t size);
+int		*extract_args(int argc, char **argv, int *top);
 
-void	push_swap(int *);
+int		is_empty(int argc, char **argc);
+int		is_matched(char *s1, char *s2);
+int		is_validate(char **split_args, size_t size);
+
+void	push_swap(int *a);
 #endif

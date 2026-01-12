@@ -14,10 +14,9 @@
 
 static char	*join_arguments(char **arguments, int size)
 {
-	
-	int	i;
-	char	*result;
-	char	*tmp;
+	int			i;
+	char		*result;
+	char		*tmp;
 
 	result = ft_strdup("");
 	i = 1;
@@ -58,10 +57,9 @@ static char	**split_arguments(char **arguments, int size)
 
 int	*extract_args(int argc, char **argv, int *top)
 {
-	char	**split_args;
-	size_t	size;
-	size_t	i;
-	int	*a;
+	char			**split_args;
+	size_t			size;
+	int				*a;
 
 	split_args = split_arguments(argv, argc);
 	if (!split_args)
@@ -78,13 +76,7 @@ int	*extract_args(int argc, char **argv, int *top)
 		destroy_double_stack((void **)split_args);
 		return (NULL);
 	}
-	i = 0;
-	while (i < size)
-	{
-		a[i] = ft_atoi(split_args[i]);
-		(*top)++;
-		i++;
-	}
+	fill_stack(a, split_args, size, top);
 	destroy_double_stack((void **)split_args);
 	return (a);
 }
