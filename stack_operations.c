@@ -10,6 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+// void	init_stack(int a[], int top, int argc, char **argv)
+// {
+// 	char	**extracted_args;
+//
+// 	extrated_args = extract_args(argc, argv);
+// 	if (!extract_args)
+// 		return (NULL);
+//
+// 	free_allocated_stack(extracted_args);
+// 	while ()
+// }
+
 // void	push_element(char *stack, int element, int top)
 // {
 // 	top++;

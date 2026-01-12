@@ -12,29 +12,23 @@
 
 #include "push_swap.h"
 
-char	**extract_args(int argc, char **argv)
+void	push_swap(int *a)
 {
-	size_t	size;
-	char	**split_args;
 
-	if (is_empty(argc, argv))
-		return (NULL);
-	split_args = split_arguments(argv, argc);
-	if (!split_args)
-		return (NULL);
-	size = stack_size(split_args);
-	if (!is_validate(split_args, size))
-		error();
-	return (split_args);
 }
 
 int	main(int argc, char **argv)
 {
-	char	**ext_args;
+	int	*a;
+	int	top;
 
-	ext_args = extract_args(argc, argv);
-	if (!ext_args)
+	if (is_empty(argc, argv))
 		return (FALSE);
-	free_allocated_stack(ext_args);
+	top = -1;
+	a = extract_args(argc, argv, &top);
+	if (!a)
+		return (FALSE);
+	push_swap(a);
+	destroy_stack(a);
 	return (FALSE);
 }

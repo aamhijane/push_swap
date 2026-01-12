@@ -10,14 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// void	init_stack(int *stack, size_t stack_size)
-// {
-// 	stack = malloc(sizeof(int) * stack_size);
-// }
-//
-// void	free_stack(int *stack)
-// {
-// 	free(stack);
-// }
+#include "push_swap.h"
 
+int	*create_stack(size_t size)
+{
+	int	*stack;
 
+	stack = (int *)malloc(sizeof(int) * size);
+	if (!stack)
+		return (NULL);
+	return (stack);
+}
+
+void	destroy_stack(void *stack)
+{
+	free(stack);
+}
+
+void	destroy_double_stack(void **stack)
+{
+	int	i;
+
+	if (!stack)
+		return ;
+
+	i = 0;
+	while (stack[i])
+	{
+		free(stack[i]);
+		i++;
+	}
+	free(stack);
+}

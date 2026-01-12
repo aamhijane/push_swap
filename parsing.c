@@ -41,7 +41,7 @@ static char	*join_arguments(char **arguments, int size)
 	return (result);
 }
 
-char	**split_arguments(char **arguments, int size)
+static char	**split_arguments(char **arguments, int size)
 {
 	char	*join_args;
 	char	**split_args;
@@ -54,4 +54,37 @@ char	**split_arguments(char **arguments, int size)
 	if (!split_args)
 		return (NULL);
 	return (split_args);
+}
+
+int	*extract_args(int argc, char **argv, int *top)
+{
+	char	**split_args;
+	size_t	size;
+	size_t	i;
+	int	*a;
+
+	split_args = split_arguments(argv, argc);
+	if (!split_args)
+		return (NULL);
+	size = stack_size(split_args);
+	if (!is_validate(split_args, size))
+	{
+		destroy_double_stack((void **)split_args);
+		error();
+	}
+	a = create_stack(size);
+	if (!a)
+	{
+		destroy_double_stack((void **)split_args);
+		return (NULL);
+	}
+	i = 0;
+	while (i < size)
+	{
+		a[i] = ft_atoi(split_args[i]);
+		(*top)++;
+		i++;
+	}
+	destroy_double_stack((void **)split_args);
+	return (a);
 }

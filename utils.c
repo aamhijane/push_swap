@@ -15,7 +15,7 @@
 void	error()
 {
 	write(2, "Error\n", 6);
-	exit(8);
+	exit(1);
 }
 
 int	stack_size(char **arguments)
@@ -51,8 +51,8 @@ void	free_allocated_stack(char **stack)
 	i = 0;
 	while (stack[i])
 	{
-		free(stack[i]);
+		destroy_stack(stack[i]);
 		i++;
 	}
-	free(stack);
+	destroy_stack(stack);
 }
