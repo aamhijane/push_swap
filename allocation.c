@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	*create_stack(size_t size)
+int	*create_stack(int size)
 {
 	int	*stack;
 
