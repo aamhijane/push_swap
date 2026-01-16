@@ -4,7 +4,7 @@ NAME=push_swap
 CC=cc
 CFLAGS=-fsanitize=address -g #-Wall -Wextra -Werror 
 
-SOURCE_FILES=push_swap.c operations.c allocation.c stack_operations.c parsing.c validation.c utils.c
+SOURCE_FILES=push_swap.c operations.c allocation.c parsing.c validation.c utils.c
 OBJECT_FILES=$(SOURCE_FILES:.c=.o)
 
 LIBFT_PATH=libft/

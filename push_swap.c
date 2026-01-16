@@ -15,36 +15,23 @@
 void	test(int *a, int *b, int *a_top, int *b_top)
 {
 	int	i;
+	int	index;
 
-	pb(a, b, a_top, b_top);
-	pb(a, b, a_top, b_top);
-	rrr(a, b, a_top, b_top);
-
-	i = *a_top;
-	while (i >= 0)
-	{
-		printf("a[%d] = %d\n", i, a[i]);
-		i--;
-	}
-	i = *b_top;
-	while (i >= 0)
-	{
-		printf("b[%d] = %d\n", i, b[i]);
-		i--;
-	}
-
-	// pa(a, b, a_top, b_top);
-	// i = *b_top;
-	// while (i >= 0)
-	// {
-	// 	printf("b[%d] = %d\n", i, b[i]);
-	// 	i--;
-	// }
-	// printf("===== STACK 'a' ======\n");
+	// stack a
+	index = idx_of_large(a, a_top);
+	printf("LARGE NUMBER IS: %d\n", a[index]);
 	// i = *a_top;
 	// while (i >= 0)
 	// {
 	// 	printf("a[%d] = %d\n", i, a[i]);
+	// 	i--;
+	// }
+	//
+	// // stack b
+	// i = *b_top;
+	// while (i >= 0)
+	// {
+	// 	printf("b[%d] = %d\n", i, b[i]);
 	// 	i--;
 	// }
 

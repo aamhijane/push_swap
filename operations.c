@@ -12,52 +12,56 @@
 
 #include "push_swap.h"
 
-void	sa(int *a, int *a_top)
+void	sa(int *a, int *a_top, int show)
 {
 	int	tmp;
 
 	tmp = a[*a_top];
 	a[*a_top] = a[*a_top - 1];
 	a[*a_top - 1] = tmp;
-	write(1, "sa\n", 3);
+	if (show)
+		write(1, "sa\n", 3);
 }
 
-void	sb(int *b, int *b_top)
+void	sb(int *b, int *b_top, int show)
 {
 	int	tmp;
 
 	tmp = b[*b_top];
 	b[*b_top] = b[*b_top - 1];
 	b[*b_top - 1] = tmp;
-	write(1, "sb\n", 3);
+	if (show)
+		write(1, "sb\n", 3);
 }
 
 void	ss(int *a, int *b, int *a_top, int *b_top)
 {
-	sa(a, a_top);
-	sb(b, b_top);
+	sa(a, a_top, FALSE);
+	sb(b, b_top, FALSE);
 	write(1, "ss\n", 3);
 }
 
-void	pa(int *a, int *b, int *a_top, int *b_top)
+void	pa(int *a, int *b, int *a_top, int *b_top, int show)
 {
 	if (*b_top == -1)
 		return ;
 	a[++(*a_top)] = b[*b_top];
 	(*b_top)--;
-	write(1, "pa\n", 3);
+	if (show)
+		write(1, "pa\n", 3);
 }
 
-void	pb(int *a, int *b, int *a_top, int *b_top)
+void	pb(int *a, int *b, int *a_top, int *b_top, int show)
 {
 	if (*a_top == -1)
 		return ;
 	b[++(*b_top)] = a[*a_top];
 	(*a_top)--;
-	write(1, "pb\n", 3);
+	if (show)
+		write(1, "pb\n", 3);
 }
 
-void	ra(int *a, int *a_top)
+void	ra(int *a, int *a_top, int show)
 {
 	int	tmp;
 	int	i;
@@ -72,10 +76,11 @@ void	ra(int *a, int *a_top)
 		i--;
 	}
 	a[0] = tmp;
-	write(1, "ra\n", 3);
+	if (show)
+		write(1, "ra\n", 3);
 }
 
-void	rb(int *b, int *b_top)
+void	rb(int *b, int *b_top, int show)
 {
 	int	tmp;
 	int	i;
@@ -90,17 +95,18 @@ void	rb(int *b, int *b_top)
 		i--;
 	}
 	b[0] = tmp;
-	write(1, "rb\n", 3);
+	if (show)
+		write(1, "rb\n", 3);
 }
 
 void	rr(int *a, int *b, int *a_top, int *b_top)
 {
-	ra(a, a_top);
-	rb(b, b_top);
+	ra(a, a_top, FALSE);
+	rb(b, b_top, FALSE);
 	write(1, "rr\n", 3);
 }
 
-void	rra(int *a, int *a_top)
+void	rra(int *a, int *a_top, int show)
 {
 	int	tmp;
 	int	i;
@@ -115,10 +121,11 @@ void	rra(int *a, int *a_top)
 		i++;
 	}
 	a[*a_top] = tmp;
-	write(1, "rra\n", 4);
+	if (show)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(int *b, int *b_top)
+void	rrb(int *b, int *b_top, int show)
 {
 	int	tmp;
 	int	i;
@@ -133,12 +140,13 @@ void	rrb(int *b, int *b_top)
 		i++;
 	}
 	b[*b_top] = tmp;
-	write(1, "rrb\n", 4);
+	if (show)
+		write(1, "rrb\n", 4);
 }
 
 void	rrr(int *a, int *b, int *a_top, int *b_top)
 {
-	rra(a, a_top);
-	rrb(b, b_top);
+	rra(a, a_top, FALSE);
+	rrb(b, b_top, FALSE);
 	write(1, "rrr\n", 4);
 }
