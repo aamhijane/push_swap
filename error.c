@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 16:01:12 by ayamhija          #+#    #+#             */
-/*   Updated: 2025/11/01 16:01:16 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/23 00:04:53 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/23 00:05:30 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "push_swap.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	print_error(void)
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	ptr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = (unsigned char)c;
-		i++;
-	}
-	return (s);
+	write(2, "Error\n", 6);
 }

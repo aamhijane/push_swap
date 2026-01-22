@@ -5,78 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 20:22:05 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/07 20:22:29 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/23 00:14:31 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/23 00:14:45 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	*join_arguments(char **arguments, int size)
+static char	*join_with_space(char *result, char *arg, int add_space)
 {
-	int			i;
-	char		*result;
-	char		*tmp;
+	char	*tmp;
 
-	result = ft_strdup("");
-	i = 1;
-	while (i <= size - 1 && arguments[i] != NULL)
+	tmp = ft_strjoin(result, arg);
+	free(result);
+	if (!tmp)
+		return (NULL);
+	result = tmp;
+	if (add_space)
 	{
-		tmp = ft_strjoin(result, arguments[i]);
+		tmp = ft_strjoin(result, " ");
 		free(result);
 		if (!tmp)
 			return (NULL);
 		result = tmp;
-		if (i != size - 1)
-		{
-			tmp = ft_strjoin(result, " ");
-			free(result);
-			if (!tmp)
-				return (NULL);
-			result = tmp;
-		}
+	}
+	return (result);
+}
+
+static char	*join_arguments(int argc, char **argv)
+{
+	int		i;
+	char	*result;
+
+	result = ft_strdup("");
+	if (!result)
+		return (NULL);
+	i = 1;
+	while (i < argc)
+	{
+		result = join_with_space(result, argv[i], (i != argc - 1));
+		if (!result)
+			return (NULL);
 		i++;
 	}
 	return (result);
 }
 
-static char	**split_arguments(char **arguments, int size)
+char	**split_and_join_args(int argc, char **argv)
 {
-	char	*join_args;
-	char	**split_args;
+	char	*joined;
+	char	**split;
 
-	join_args = join_arguments(arguments, size);
-	if (!join_args)
+	joined = join_arguments(argc, argv);
+	if (!joined)
 		return (NULL);
-	split_args = ft_split(join_args, ' ');
-	free(join_args);
-	if (!split_args)
-		return (NULL);
-	return (split_args);
+	split = ft_split(joined, ' ');
+	free(joined);
+	return (split);
 }
 
-int	*extract_args(int argc, char **argv, int *top)
+int	count_split_args(char **split_args)
 {
-	char			**split_args;
-	size_t			size;
-	int				*a;
+	int	count;
 
-	split_args = split_arguments(argv, argc);
-	if (!split_args)
-		return (NULL);
-	size = stack_size(split_args);
-	if (!is_validate(split_args, size))
+	count = 0;
+	while (split_args[count])
+		count++;
+	return (count);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
 	{
-		destroy_double_stack((void **)split_args);
-		error();
+		free(split[i]);
+		i++;
 	}
-	a = create_stack(size);
-	if (!a)
-	{
-		destroy_double_stack((void **)split_args);
-		return (NULL);
-	}
-	fill_stack(a, split_args, size, top);
-	destroy_double_stack((void **)split_args);
-	return (a);
+	free(split);
 }

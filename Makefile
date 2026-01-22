@@ -1,35 +1,54 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/01/23 00:22:21 by ayamhija          #+#    #+#              #
+#    Updated: 2026/01/23 00:22:35 by ayamhija         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME=push_swap
+NAME		= push_swap
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
 
-CC=cc
-CFLAGS=-fsanitize=address -g #-Wall -Wextra -Werror 
+SRCS		= push_swap.c \
+			  error.c \
+			  libft_utils.c \
+			  libft_utils2.c \
+			  stack_utils.c \
+			  stack_utils2.c \
+			  op_swap.c \
+			  op_push.c \
+			  op_rotate.c \
+			  op_reverse.c \
+			  parsing.c \
+			  validation.c \
+			  index.c \
+			  sort_three.c \
+			  turk_sort.c \
+			  cost_calc.c \
+			  cost_calc2.c \
+			  execute_move.c
 
-SOURCE_FILES=push_swap.c operations.c allocation.c parsing.c validation.c utils.c
-OBJECT_FILES=$(SOURCE_FILES:.c=.o)
-
-LIBFT_PATH=libft/
-LIBFT_LIB=$(LIBFT_PATH)libft.a
-
-INCLUDES=-I./$(LIBFT_PATH)
+OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECT_FILES) $(LIBFT_LIB)
-	$(CC) $(CFLAGS) $(OBJECT_FILES) $(LIBFT_LIB) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(LIBFT_LIB):
-	make -C $(LIBFT_PATH)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECT_FILES)
-	make clean -C $(LIBFT_PATH)
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFT_PATH)
+	$(RM) $(NAME)
 
 re: fclean all
 

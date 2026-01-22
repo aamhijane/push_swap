@@ -5,103 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 20:01:34 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/07 20:01:57 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/23 00:14:58 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/23 00:15:09 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_number(char *argument)
+int	is_valid_number(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (argument[i] && argument[i] == '-')
+	if (str[i] == '\0')
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (i > 1 || (i == 1 && ft_strlen(argument) == 1))
-		return (FALSE);
-	if (i == 1 && argument[i] == '0')
-		return (FALSE);
-	while (argument[i])
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] != '\0')
 	{
-		if (!ft_isdigit(argument[i]))
-			return (FALSE);
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
 		i++;
 	}
-	return (TRUE);
+	return (1);
 }
 
-static	int	is_duplicate(char **arguments, size_t len)
+long	to_long(const char *str)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		sign;
+	long	res;
 
 	i = 0;
-	while (i < len)
+	sign = 1;
+	res = 0;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] != '\0')
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	return (res * sign);
+}
+
+int	has_duplicates(int *array, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
 	{
 		j = i + 1;
-		while (j < len)
+		while (j < size)
 		{
-			if (ft_strlen(arguments[i]) == ft_strlen(arguments[j]))
-			{
-				if (is_matched(arguments[i], arguments[j]))
-					return (TRUE);
-			}
+			if (array[i] == array[j])
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (FALSE);
+	return (0);
 }
 
-static long	is_limit(char *argument)
+int	validate_split_args(char **split_args, int size)
 {
-	long	res;
-	int		sign;
-	size_t	i;
+	int		i;
+	long	num;
 
-	res = 0;
-	sign = 1;
 	i = 0;
-	if (argument[i] == '-')
+	while (i < size)
 	{
-		sign *= -1;
+		if (!is_valid_number(split_args[i]))
+			return (0);
+		num = to_long(split_args[i]);
+		if (num < INT_MIN || num > INT_MAX)
+			return (0);
 		i++;
 	}
-	while (argument[i])
-	{
-		res *= 10;
-		res += argument[i] - 48;
-		i++;
-	}
-	res *= sign;
-	if (res > 2147483647 || res < -2147483648)
-		return (TRUE);
-	return (FALSE);
+	return (1);
 }
 
-int	is_empty(int argc, char **argv)
+int	parse_split_args(char **split_args, int size, t_stack *a)
 {
-	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
-		return (TRUE);
-	return (FALSE);
-}
+	int		i;
+	long	num;
 
-int	is_validate(char **arguments, size_t size)
-{
-	int		is_dup;
-	size_t	i;
-
-	is_dup = is_duplicate(arguments, size);
 	i = 0;
-	while (size > i)
+	while (i < size)
 	{
-		if (!is_number(arguments[i]) || is_limit(arguments[i]))
-			return (FALSE);
+		num = to_long(split_args[i]);
+		a->array[i] = (int)num;
 		i++;
 	}
-	if (is_dup)
-		return (FALSE);
-	return (TRUE);
+	a->size = size;
+	if (has_duplicates(a->array, a->size))
+		return (0);
+	return (1);
 }
