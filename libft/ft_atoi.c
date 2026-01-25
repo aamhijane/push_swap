@@ -1,48 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2025/10/28 16:27:13 by ayamhija          #+#    #+#             */
+/*   Updated: 2025/10/28 18:05:51 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_stack(t_stack *stack)
+int	ft_atoi(const char *nptr)
 {
-	if (stack)
-	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
+	long	res;
+	int		sign;
+	size_t	i;
 
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
+	res = 0;
+	sign = 1;
 	i = 0;
-	while (split[i])
+	while (nptr[i] && ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32))
+		i++;
+	if (nptr[i] == '-')
 	{
-		free(split[i]);
+		sign *= -1;
 		i++;
 	}
-	free(split);
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] && ft_isdigit(nptr[i]))
+	{
+		res *= 10;
+		res += nptr[i] - 48;
+		i++;
+	}
+	res *= sign;
+	return ((int)res);
 }

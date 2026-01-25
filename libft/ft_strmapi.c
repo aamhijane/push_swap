@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2025/11/04 16:47:55 by ayamhija          #+#    #+#             */
+/*   Updated: 2025/11/04 19:11:46 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_stack(t_stack *stack)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (stack)
-	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
+	char			*buffer;
+	size_t			len;
+	unsigned int	i;
 
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	buffer = malloc(sizeof(char) * (len + 1));
+	if (!buffer)
+		return (NULL);
 	i = 0;
-	while (split[i])
+	while (s[i])
 	{
-		free(split[i]);
+		buffer[i] = f(i, s[i]);
 		i++;
 	}
-	free(split);
+	buffer[i] = '\0';
+	return (buffer);
 }

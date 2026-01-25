@@ -1,48 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2025/10/31 21:59:59 by ayamhija          #+#    #+#             */
+/*   Updated: 2025/10/31 22:17:09 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_stack(t_stack *stack)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (stack)
-	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
+	unsigned char		*s_one;
+	unsigned char		*s_two;
+	size_t				i;
 
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
+	s_one = (unsigned char *)s1;
+	s_two = (unsigned char *)s2;
 	i = 0;
-	while (split[i])
+	while (i < n)
 	{
-		free(split[i]);
+		if (s_one[i] != s_two[i])
+			return (s_one[i] - s_two[i]);
 		i++;
 	}
-	free(split);
+	return (0);
 }

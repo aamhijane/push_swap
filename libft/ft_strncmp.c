@@ -1,48 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2025/11/01 18:05:17 by ayamhija          #+#    #+#             */
+/*   Updated: 2025/11/01 18:17:31 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_stack(t_stack *stack)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (stack)
-	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
+	size_t	i;
 
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
+	if (n == 0)
+		return (0);
 	i = 0;
-	while (split[i])
+	while (i < n)
 	{
-		free(split[i]);
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] == '\0')
+			return (0);
 		i++;
 	}
-	free(split);
+	return (0);
 }

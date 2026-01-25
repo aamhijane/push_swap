@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2026/01/25 18:28:55 by ayamhija          #+#    #+#             */
+/*   Updated: 2026/01/25 18:29:02 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *stack)
+static void	push(t_stack *src, t_stack *dst)
 {
-	if (stack)
-	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
-
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
+	if (!src || src->size == 0)
 		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	dst->array[dst->size] = src->array[src->size - 1];
+	dst->size++;
+	src->size--;
+}
+
+void	pa(t_stack *a, t_stack *b, bool print)
+{
+	push(b, a);
+	if (print)
+		ft_putendl_fd("pa", 1);
+}
+
+void	pb(t_stack *a, t_stack *b, bool print)
+{
+	push(a, b);
+	if (print)
+		ft_putendl_fd("pb", 1);
 }

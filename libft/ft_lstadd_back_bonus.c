@@ -1,48 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayamhija <ayamhija@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 18:27:20 by ayamhija          #+#    #+#             */
-/*   Updated: 2026/01/25 18:27:23 by ayamhija         ###   ########.fr       */
+/*   Created: 2025/11/09 17:04:51 by ayamhija          #+#    #+#             */
+/*   Updated: 2025/11/09 17:05:20 by ayamhija         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_stack(t_stack *stack)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (stack)
+	t_list	*last;
+
+	if (!lst || !new)
 	{
-		if (stack->array)
-			free(stack->array);
-		free(stack);
-	}
-}
-
-void	error_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
 		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
 	}
-	free(split);
+	if (*lst == NULL)
+	{
+		*lst = new;
+	}
+	else
+	{
+		last = ft_lstlast(*lst);
+		last->next = new;
+	}
 }
