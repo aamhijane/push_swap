@@ -31,6 +31,7 @@ void	free_stack(t_stack *stack);
 void	free_split(char **split);
 bool	is_valid_number(char *str);
 long	ft_atol(char *str);
+int		count_split_numbers(char **split);
 int		count_numbers(int argc, char **argv);
 bool	validate_and_convert(char *str, int *num);
 bool	has_duplicates(int *array, int size);

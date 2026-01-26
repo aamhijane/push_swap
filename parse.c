@@ -53,16 +53,6 @@ long	ft_atol(char *str)
 	return (result * sign);
 }
 
-static int	count_split_numbers(char **split)
-{
-	int	count;
-
-	count = 0;
-	while (split[count])
-		count++;
-	return (count);
-}
-
 static bool	is_empty_string(char *str)
 {
 	int	i;
